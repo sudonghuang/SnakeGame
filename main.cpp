@@ -1,23 +1,10 @@
-#include "snakegame.h"
-
 #include <QApplication>
-#include <QLocale>
-#include <QTranslator>
+#include "snakegame.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        const QString baseName = "snakegame_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
-            a.installTranslator(&translator);
-            break;
-        }
-    }
-    Snakegame w;
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+    SnakeGame game;
+    game.show();
+    return app.exec();
 }
